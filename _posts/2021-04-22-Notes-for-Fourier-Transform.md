@@ -49,11 +49,11 @@ f_2(x) & = 5sin(6x + 3)
 
 ```r 
 
-x <- seq(-pi, pi,length = 500)
-f1 <- 3*sin(3*x + 0.1)
-f2 <- 5*sin(6*x + 3)
-plot(x, f1, type = "l", col=2, xlim = c(-4, 4), ylim = c(-9, 8))
-lines(x, f2, col=4)
+x <- seq(-pi, pi,length = 500)　　
+f1 <- 3*sin(3*x + 0.1)　　
+f2 <- 5*sin(6*x + 3)　　
+plot(x, f1, type = "l", col=2, xlim = c(-4, 4), ylim = c(-9, 8))　　
+lines(x, f2, col=4)　　
 lines(x, f1+f2, lwd=3)
 ```
 ![2.jpg](https://i.loli.net/2021/05/04/XpmfVvOsbyS5J8Q.jpg)
