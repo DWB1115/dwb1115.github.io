@@ -24,7 +24,8 @@ tags:								#标签
     </script>
 </head>
 
-```r
+```r 
+
 library(plot3D)
 ```
 
@@ -46,7 +47,8 @@ f_2(x) & = 5sin(6x + 3)
 
 <span style="font-family:楷体;font-size:21px;">　　如下所示,红色信号为$f_1(x)$，蓝色信号为$f_2(x)$，黑色（原函数）为红蓝两色信号合成得到的信号。</span>
 
-```r
+```r 
+
 x <- seq(-pi, pi,length = 500)
 f1 <- 3*sin(3*x + 0.1)
 f2 <- 5*sin(6*x + 3)
@@ -67,7 +69,8 @@ $$F(u) = \mathcal{F}\left\{f(t)\right\} = \int_{-\infty}^{+\infty}f(t)\cdot e^{-
 <span style="font-family:楷体;font-size:21px;">　　示例中，该信号的傅里叶变换的结果如下所示：</span>
 
 
-```r
+```r 
+
 plot(seq(0, 10, 1), abs(fft(f1+f2)[1:11]), type="l", xlim=c(0,10))
 ```
 ![3.jpg](https://i.loli.net/2021/05/04/jhlfWKTxzsbyFNH.jpg)
@@ -99,7 +102,8 @@ f_2(x) & = sin(-x + 0.5 y)
 \end{aligned}
 \right.$$
 
-```r
+```r 
+
 f1 <- function(x, y) {
   u <- 0.5
   v <- 1
@@ -113,7 +117,8 @@ f2 <- function(x, y) {
 }
 ```
 
-```r
+```r 
+
 x <- seq(-10,5,length = 200)
 y <- x
 z1 <- outer(x, y, f1)
@@ -131,7 +136,8 @@ persp(x, y, z1,
 
 ![4.jpg](https://i.loli.net/2021/05/04/Y1CyuoEsJ9cR43e.jpg)
 
-```r
+```r 
+
 z2 <- outer(x, y, f2)
 nrz <- nrow(z2)
 ncz <- ncol(z2)
@@ -148,7 +154,8 @@ persp(x, y, z2,
 
 <span style="font-family:楷体;font-size:21px;">　　可以看到，这是两列互相垂直的正弦波。其原因是两个正弦波的传播法向量$(1,2)$和$(-2,1)$之间互相垂直。再来看看这两列正弦波给上不同振幅后的组合：</span>
 
-```r
+```r 
+
 z1 <- 3*outer(x, y, f1)
 z2 <- 5*outer(x, y, f2)
 z <- z1+z2
@@ -189,7 +196,8 @@ f_2(x) & = sin(x + 2 y)
 \end{aligned}
 \right.$$
 
-```r
+```r 
+
 f1 <- function(x, y) {
   u <- 0.5
   v <- 1
@@ -203,7 +211,8 @@ f2 <- function(x, y) {
 }
 ```
 
-```r
+```r 
+
 x <- seq(-5,5,length = 200)
 y <- x
 z1 <- outer(x, y, f1)
@@ -222,7 +231,8 @@ persp(x, y, z1,
 ![7.jpg](https://i.loli.net/2021/05/04/kBAW8jVCdXHRsLG.jpg)
 
 
-```r
+```r 
+
 z2 <- outer(x, y, f2)
 nrz <- nrow(z2)
 ncz <- ncol(z2)
