@@ -11,6 +11,7 @@ tags:								#标签
     - Code
     - Math
 ---
+
 <head>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -104,7 +105,7 @@ f1 <- function(x, y) {
   v <- 1
   sin(u*x + v*y)
 }
-<br>
+
 f2 <- function(x, y) {
   u <- -1
   v <- 0.5
@@ -247,7 +248,9 @@ persp(x, y, z2,
 $$F(u, v) = \mathcal{F}\left\{f(t,z)\right\} = \sum_{t=0}^{M-1} \sum_{z=0}^{N-1}f(t,z)\cdot e^{-j\cdot 2\pi  (\frac{ut}{M}+\frac{vz}{N})}$$
 
 <span style="font-family:楷体;font-size:21px;">　　首先，频域图中过中心点（因为已经做了中心平移操作）的所有直线，都可以写成$\frac{u}{v}=k$的形式。而值得注意的是，频域图中的两个坐标$u,v$，其实就代表二维正弦函数：
+
 $$f_i(t,z) = A\cdot sin(w_1t + w_2z+\phi)$$
+
 中$w_1$和$w_2$的取值。</span>
 
 <span style="font-family:楷体;font-size:21px;">　　在上文中已经讨论过，$\frac{w_1}{w_2}$表示信号的传播方向，而不同的$w_1，{w_2}$大小仅代表在该方向上的频率大小。因此，**频域图中过中心点的亮线，表示在该方向有着一连串不同频率的正弦信号的组合**。体现在几何意义上，因为该方向有“浪花”一样的信号的传播（像之前的例子那样），因此，这也代表相较于其他方向，在这个方向上有着较为明显的数值波动。也就是有灰度值的明显变动，即存在边界。</span>
