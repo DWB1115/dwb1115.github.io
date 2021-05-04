@@ -4,7 +4,7 @@ title:      傅里叶变换＆图像处理 			# 标题
 subtitle:   图像处理笔记  #副标题
 date:       2021-04-22 				# 时间
 author:     dwb 						# 作者
-header-img: https://i.loli.net/2021/05/04/b7u8Kh513NWVyqz.png  #这篇文章标题背景图片
+header-img: https://i.loli.net/2021/05/04/XEjlMZvNkW9dFGD.png  #这篇文章标题背景图片
 catalog: false 						# 是否归档
 tags:								#标签
     - Image Process 
@@ -23,7 +23,7 @@ tags:								#标签
     </script>
 </head>
 
-```R
+```r
 library(plot3D)
 ```
 
@@ -45,7 +45,7 @@ f_2(x) & = 5sin(6x + 3)
 
 <span style="font-family:楷体;font-size:21px;">　　如下所示,红色信号为$f_1(x)$，蓝色信号为$f_2(x)$，黑色（原函数）为红蓝两色信号合成得到的信号。</span>
 
-```R
+```r
 x <- seq(-pi, pi,length = 500)
 f1 <- 3*sin(3*x + 0.1)
 f2 <- 5*sin(6*x + 3)
@@ -62,10 +62,11 @@ $$f_i(t) = A\cdot sin(wt+\phi)$$
 <span style="font-family:楷体;font-size:21px;">　　而傅里叶变换，就是想要知道**一个周期信号是怎样由那些正弦信号组合而成的**，可以这样理解，傅里叶变换得到的频域映射$F(u)$，其实就是**频率为$u$的正弦信号，在原始信号中的权重（或者说，强度）**。让我们回顾一下一维连续信号的傅里叶变换公式：</span>
 
 $$F(u) = \mathcal{F}\left\{f(t)\right\} = \int_{-\infty}^{+\infty}f(t)\cdot e^{-j\cdot (2\pi  u)t}dt$$
+
 <span style="font-family:楷体;font-size:21px;">　　示例中，该信号的傅里叶变换的结果如下所示：</span>
 
 
-```R
+```r
 plot(seq(0, 10, 1), abs(fft(f1+f2)[1:11]), type="l", xlim=c(0,10))
 ```
 ![3.jpg](https://i.loli.net/2021/05/04/jhlfWKTxzsbyFNH.jpg)
@@ -97,7 +98,7 @@ f_2(x) & = sin(-x + 0.5 y)
 \end{aligned}
 \right.$$
 
-```R
+```r
 f1 <- function(x, y) {
   u <- 0.5
   v <- 1
@@ -111,7 +112,7 @@ f2 <- function(x, y) {
 }
 ```
 
-```R
+```r
 x <- seq(-10,5,length = 200)
 y <- x
 z1 <- outer(x, y, f1)
@@ -129,7 +130,7 @@ persp(x, y, z1,
 
 ![4.jpg](https://i.loli.net/2021/05/04/Y1CyuoEsJ9cR43e.jpg)
 
-```R
+```r
 z2 <- outer(x, y, f2)
 nrz <- nrow(z2)
 ncz <- ncol(z2)
@@ -146,7 +147,7 @@ persp(x, y, z2,
 
 <span style="font-family:楷体;font-size:21px;">　　可以看到，这是两列互相垂直的正弦波。其原因是两个正弦波的传播法向量$(1,2)$和$(-2,1)$之间互相垂直。再来看看这两列正弦波给上不同振幅后的组合：</span>
 
-```R
+```r
 z1 <- 3*outer(x, y, f1)
 z2 <- 5*outer(x, y, f2)
 z <- z1+z2
@@ -167,7 +168,10 @@ persp3D(x, y, z,
 <span style="font-family:楷体;font-size:21px;">　　组合得到了一个二维周期函数的部分图像！自然而然地，我们可以由一维推广到二维：一个周期性的二维函数，其可以分解为多个二维正弦信号的加和形式。</span>
 
 <span style="font-family:楷体;font-size:21px;">　　这里还有一点需要注意的地方。我们知道对于二维的正弦信号
-$$f_i(t,z) = A\cdot sin(w_1t + w_2z+\phi)$$；方向信息包含在$\frac{w_1}{w_2}$之中。但是有同样的方向并不一定代表有同样的频率。若考虑$x = w_1t + w_2z+\phi$，则在三维欧氏坐标系$xzt$下，这是一个平行于$x$轴的平面。这也是为什么二维正弦函数长得如上例所示的原因。而这个平面等高线的疏密程度，可以用来衡量在这个法向量方向上，正弦频率的大小。这个时候相似于一位情况。**也就是说，$\frac{w_1}{w_2}$仅决定二维正弦函数的传播方向，而具体的大小则决定传播的频率**。</span>
+
+$$f_i(t,z) = A\cdot sin(w_1t + w_2z+\phi)$$
+
+；方向信息包含在$\frac{w_1}{w_2}$之中。但是有同样的方向并不一定代表有同样的频率。若考虑$x = w_1t + w_2z+\phi$，则在三维欧氏坐标系$xzt$下，这是一个平行于$x$轴的平面。这也是为什么二维正弦函数长得如上例所示的原因。而这个平面等高线的疏密程度，可以用来衡量在这个法向量方向上，正弦频率的大小。这个时候相似于一位情况。**也就是说，$\frac{w_1}{w_2}$仅决定二维正弦函数的传播方向，而具体的大小则决定传播的频率**。</span>
 
 ##  *二维离散傅里叶变换与图像*
 <span style="font-family:楷体;font-size:21px;">　　二维图像是一个天然的二维（周期性）离散函数。以灰度图为例，把各个像素点的灰度认为是该位置的函数大小。那么二维图像就可以看作是一个等间距采样某函数的采样信号。是将一个二维冲击窜作用在一个二维函数的某个周期上得到的结果。</span>
@@ -184,7 +188,7 @@ f_2(x) & = sin(x + 2 y)
 \end{aligned}
 \right.$$
 
-```R
+```r
 f1 <- function(x, y) {
   u <- 0.5
   v <- 1
@@ -198,7 +202,7 @@ f2 <- function(x, y) {
 }
 ```
 
-```R
+```r
 x <- seq(-5,5,length = 200)
 y <- x
 z1 <- outer(x, y, f1)
@@ -217,7 +221,7 @@ persp(x, y, z1,
 ![7.jpg](https://i.loli.net/2021/05/04/kBAW8jVCdXHRsLG.jpg)
 
 
-```R
+```r
 z2 <- outer(x, y, f2)
 nrz <- nrow(z2)
 ncz <- ncol(z2)
