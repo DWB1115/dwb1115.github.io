@@ -4,7 +4,7 @@ title:      傅里叶变换＆图像处理 			# 标题
 subtitle:   图像处理笔记  #副标题
 date:       2021-04-22 				# 时间
 author:     dwb 						# 作者
-header-img: https://sm.ms/image/b7u8Kh513NWVyqz 	#这篇文章标题背景图片
+header-img: https://i.loli.net/2021/05/04/b7u8Kh513NWVyqz.png  #这篇文章标题背景图片
 catalog: false 						# 是否归档
 tags:								#标签
     - Image Process 
