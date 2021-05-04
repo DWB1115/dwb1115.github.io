@@ -1,13 +1,13 @@
 ---
 layout:     post                                                  # 使用的布局（不需要改）
-title:      傅里叶变换＆图像处理                                     # 标题 
+title:      傅里叶变换＆图像处理                                     # 标题
 subtitle:   图像处理笔记                                            # 副标题
 date:       2021-04-22                                            # 时间
 author:     dwb                                                   # 作者
 header-img: https://i.loli.net/2021/05/04/V91JEusn7xcmpRY.jpg     # 这篇文章标题背景图片
 catalog: false                                                    # 是否归档
 tags:                                                             # 标签
-    - Image Process 
+    - Image Process
     - Code
     - Math
 ---
@@ -31,7 +31,7 @@ f_2(x) & = 5sin(6x + 3)
 
 如下所示,红色信号为$f_1(x)$，蓝色信号为$f_2(x)$，黑色（原函数）为红蓝两色信号合成得到的信号。
 
-```r 
+```{r tidy=FALSE}
 x <- seq(-pi, pi,length = 500)
 f1 <- 3*sin(3*x + 0.1)
 f2 <- 5*sin(6*x + 3)
@@ -57,7 +57,7 @@ $$
 示例中，该信号的傅里叶变换的结果如下所示:
 
 
-```r 
+```{r tidy=FALSE}
 plot(seq(0, 10, 1), abs(fft(f1+f2)[1:11]), type="l", xlim=c(0,10))
 ```
 
@@ -71,7 +71,6 @@ plot(seq(0, 10, 1), abs(fft(f1+f2)[1:11]), type="l", xlim=c(0,10))
 <img src="https://i.loli.net/2021/05/04/sL9RwuhN5Y4Tyed.jpg" >
 
 现实中的信号往往由很多种频率的正弦信号组合而成，此时傅里叶变换得到的频域映射其实就是各个频率信号的权重（含量）表示。
-
 
 ## 二维连续傅里叶变换
 
@@ -96,13 +95,12 @@ f_2(x) & = sin(-x + 0.5 y)
 \end{aligned}
 \right.$$
 
-```r 
+```{r tidy=FALSE}
 f1 <- function(x, y) {
   u <- 0.5
   v <- 1
   sin(u*x + v*y)
 }
-
 f2 <- function(x, y) {
   u <- -1
   v <- 0.5
@@ -110,7 +108,7 @@ f2 <- function(x, y) {
 }
 ```
 
-```r 
+```{r tidy=FALSE}
 x <- seq(-10,5,length = 200)
 y <- x
 z1 <- outer(x, y, f1)
@@ -128,7 +126,7 @@ persp(x, y, z1,
 
 ![4.jpg](https://i.loli.net/2021/05/04/Y1CyuoEsJ9cR43e.jpg)
 
-```r 
+```{r tidy=FALSE}
 z2 <- outer(x, y, f2)
 nrz <- nrow(z2)
 ncz <- ncol(z2)
@@ -146,7 +144,7 @@ persp(x, y, z2,
 
 可以看到，这是两列互相垂直的正弦波。其原因是两个正弦波的传播法向量$(1,2)$和$(-2,1)$之间互相垂直。再来看看这两列正弦波给上不同振幅后的组合:
 
-```r 
+```{r tidy=FALSE}
 z1 <- 3*outer(x, y, f1)
 z2 <- 5*outer(x, y, f2)
 z <- z1+z2
@@ -171,10 +169,10 @@ persp3D(x, y, z,
 这里还有一点需要注意的地方。我们知道对于二维的正弦信号
 
 $$
-	f_i(t,z) = A\cdot sin(w_1t + w_2z+\phi)
+	f_i(t,z) = A\cdot sin(w_1t + w_2z+\phi);
 $$
 
-；方向信息包含在$\frac{w_1}{w_2}$之中。但是有同样的方向并不一定代表有同样的频率。若考虑$x = w_1t + w_2z+\phi$，则在三维欧氏坐标系$xzt$下，这是一个平行于$x$轴的平面。这也是为什么二维正弦函数长得如上例所示的原因。而这个平面等高线的疏密程度，可以用来衡量在这个法向量方向上，正弦频率的大小。这个时候相似于一位情况。**也就是说，$\frac{w_1}{w_2}$仅决定二维正弦函数的传播方向，而具体的大小则决定传播的频率**。
+方向信息包含在$\frac{w_1}{w_2}$之中。但是有同样的方向并不一定代表有同样的频率。若考虑$x = w_1t + w_2z+\phi$，则在三维欧氏坐标系$xzt$下，这是一个平行于$x$轴的平面。这也是为什么二维正弦函数长得如上例所示的原因。而这个平面等高线的疏密程度，可以用来衡量在这个法向量方向上，正弦频率的大小。这个时候相似于一位情况。**也就是说，$\frac{w_1}{w_2}$仅决定二维正弦函数的传播方向，而具体的大小则决定传播的频率**。
 
 ## 二维离散傅里叶变换与图像
 
@@ -193,13 +191,12 @@ f_2(x) & = sin(x + 2 y)
 \end{aligned}
 \right.$$
 
-```r 
+```{r tidy=FALSE}
 f1 <- function(x, y) {
   u <- 0.5
   v <- 1
   sin(u*x + v*y)
 }
-
 f2 <- function(x, y) {
   u <- 1
   v <- 2
@@ -207,7 +204,7 @@ f2 <- function(x, y) {
 }
 ```
 
-```r 
+```{r tidy=FALSE}
 x <- seq(-5,5,length = 200)
 y <- x
 z1 <- outer(x, y, f1)
@@ -226,7 +223,7 @@ persp(x, y, z1,
 ![7.jpg](https://i.loli.net/2021/05/04/kBAW8jVCdXHRsLG.jpg)
 
 
-```r 
+```{r tidy=FALSE}
 z2 <- outer(x, y, f2)
 nrz <- nrow(z2)
 ncz <- ncol(z2)
