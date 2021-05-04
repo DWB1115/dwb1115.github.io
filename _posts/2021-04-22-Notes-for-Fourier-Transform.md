@@ -24,12 +24,14 @@ tags:								#标签
     </script>
 </head>
 
+
+
+#  信号、函数与傅里叶变换
+##  *一维连续傅里叶变换*
 <pre>
 library(plot3D)
 </pre>
 
-#  信号、函数与傅里叶变换
-##  *一维连续傅里叶变换*
 <span style="font-family:楷体;font-size:19px;">　　首先，所有的周期函数均可以表示为一系列不同频率的正弦信号加和。比如有这样一个形状的函数：</span>
 
 ![1.jpg](https://i.loli.net/2021/05/04/rct9hzVoYMgXGHa.jpg)
