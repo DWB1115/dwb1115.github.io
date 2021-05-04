@@ -47,9 +47,8 @@ f_2(x) & = 5sin(6x + 3)
 
 <span style="font-family:楷体;font-size:19px;">　　如下所示,红色信号为$f_1(x)$，蓝色信号为$f_2(x)$，黑色（原函数）为红蓝两色信号合成得到的信号。</span>
 
-```r 
-
-x <- seq(-pi, pi,length = 500)　　
+```r
+x <- seq(-pi, pi,length = 500)<br>
 f1 <- 3*sin(3*x + 0.1)　　
 f2 <- 5*sin(6*x + 3)　　
 plot(x, f1, type = "l", col=2, xlim = c(-4, 4), ylim = c(-9, 8))　　
